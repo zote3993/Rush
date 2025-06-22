@@ -911,6 +911,10 @@ public class Rash extends ApplicationAdapter {
                         hs[i].math();
                     }
 
+                    for (int i = 0; i < p.length; i += 1) {
+                        p[i].math();
+                    }
+
                     for (int g = 0; g < persik.length; g += 1) {
                         persik[g].x += persik[g].sx;
                         persik[g].y += persik[g].sy;
@@ -923,9 +927,6 @@ public class Rash extends ApplicationAdapter {
                             persik[g].sz = persik[g].sz / -2;
                         }
 
-                        for (int i = 0; i < p.length; i += 1) {
-                            p[i].math();
-                        }
 
                         for (int i = persik[g].tx.length - 1; i > 0; i -= 1) {
                             persik[g].tx[i] = persik[g].tx[i - 1];
