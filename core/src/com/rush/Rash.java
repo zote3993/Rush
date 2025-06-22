@@ -23,7 +23,7 @@ import java.util.Random;
 public class Rash extends ApplicationAdapter {
     SpriteBatch batch;
     BitmapFont[] font = new BitmapFont[10];
-    Texture img, shadow, trava, trava_shadow, grib, grib_shadow, slot, collect, grib_glow, korobka, korobka_s, derevob, topor, topor_s, der_kr, brevno, kraft, kraft1, kraft_bar, syp, syp_item, zemlya, hp_texture, hp_texture_low, enemy, sypp_bar, sypp, biom, ej, iron, iron_m, arb_bar, attack, attack_s, shoot, hungry_texture, hungry_texture_low, big_ej_t, poop, big_hp, ej_hpp_full, ej_hpp_low, chistka, mag, fireball, topori, kirkai, arbi, nebo, penek, badplace, locator, locator2, tar, tarflower, fly, magshadow, kapkan, build_kapkan, build_kapkan_s;
+    Texture img, shadow, trava, trava_shadow, grib, grib_shadow, slot, collect, grib_glow, korobka, korobka_s, derevob, topor, topor_s, der_kr, brevno, kraft, kraft1, kraft_bar, syp, syp_item, zemlya, hp_texture, hp_texture_low, enemy, sypp_bar, sypp, biom, ej, iron, iron_m, arb_bar, attack, attack_s, shoot, hungry_texture, hungry_texture_low, big_ej_t, poop, big_hp, ej_hpp_full, ej_hpp_low, chistka, mag, fireball, topori, kirkai, arbi, nebo, penek, badplace, locator, locator2, tar, tarflower, fly, magshadow, kapkan, build_kapkan, build_kapkan_s,img_nakaval,skull;
     TextureRegion toporiRegion, kirkaiRegion, arbiRegion;
     Persik persik[] = new Persik[69]; ///// КОЛ-ВО МАТРАСИКОВ
     ShapeRenderer drawer;
@@ -34,7 +34,7 @@ public class Rash extends ApplicationAdapter {
     boolean initialized = false;
     HollowSplash[] hs = new HollowSplash[200];
     ThroughServerPacket initializationData;
-    boolean online = true;
+    boolean online = true; /////////////////////////////////// ДЛЯ ОФЛАЙН РЕЖИМА ПЕРЕКЛЮЧИТЬ НА FALSE!!!!!!!!!!
     int gribochkov = random.nextInt(20) + 20;
     int derevov = random.nextInt(20) + 80;
     int ironovv = random.nextInt(20) + 20;
@@ -227,6 +227,8 @@ public class Rash extends ApplicationAdapter {
         batch = new SpriteBatch();
         drawer = new ShapeRenderer();
         stalker = new Stalker(this); // ДЛЯ КРУТОГО ЭФФЕКТА УБРАТЬ КОММЕНТЫ ТУТ, НА 861, на 1811 и на 29
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getHeight();
         for (int i = 0; i < eja.length; i += 1) {
             eja[i] = new Texture("hog_" + (i + 1) + ".png");
         }
@@ -266,7 +268,7 @@ public class Rash extends ApplicationAdapter {
             persik[i] = new Persik(100, 100, 10, 0);
         }
 
-        for (int i = 0; i < hs.length; i += 1){
+        for (int i = 0; i < hs.length; i += 1) {
             hs[i] = new HollowSplash(this);
         }
 
@@ -384,6 +386,7 @@ public class Rash extends ApplicationAdapter {
 
             }
             boim = generateBiom(fx * 2, fy * 2, res, boim.length, 25, 0.3f, 50000, 1100);
+            initialized = true;
         }
 
         point[0][2] = 0.1f;
@@ -454,11 +457,11 @@ public class Rash extends ApplicationAdapter {
         arbi = new Texture("arbi.png");
         arbiRegion = new TextureRegion(arbi);
         nebo = new Texture("nebo.png");
+        img_nakaval = new Texture("img_nakaval.png");
+        skull = new Texture("skull.png");
         //kirkai = new Texture("kirkai .png");
         //arbi = new Texture("arbi.png");
         // biomm = new Pixmap(64,64, Pixmap.Format.RGBA8888);
-        w = Gdx.graphics.getWidth();
-        h = Gdx.graphics.getHeight();
 
         sound9 = Gdx.audio.newSound(Gdx.files.internal("kapkan.mp3"));
         sound8 = Gdx.audio.newMusic(Gdx.files.internal("ULTRABITFEAR.mp3"));
@@ -597,7 +600,7 @@ public class Rash extends ApplicationAdapter {
                                     chet2 += 1;
                                 }
                             }
-                            strikes(persik[ym].x,persik[ym].y,1);
+                            strikes(persik[ym].x, persik[ym].y, 1);
                             break;
                         }
                     }
@@ -624,7 +627,7 @@ public class Rash extends ApplicationAdapter {
                                     der_kr123 = 20;
                                     breven += 1;
                                 }
-                                strikes(derevox[i],derevoy[i],2);
+                                strikes(derevox[i], derevoy[i], 2);
                                 sound2.play(0.7f);
                             }
                         }
@@ -904,7 +907,7 @@ public class Rash extends ApplicationAdapter {
                     }
                     stalker.math();
 
-                    for (int i = 0; i < hs.length; i += 1){
+                    for (int i = 0; i < hs.length; i += 1) {
                         hs[i].math();
                     }
 
@@ -1172,7 +1175,7 @@ public class Rash extends ApplicationAdapter {
                                 if (kapkanhp[i2] > 1) {
                                     kapkanhp[i2] -= 1;
                                 }
-                                strikes(kapkanx[i],kapkany[i],10);
+                                strikes(kapkanx[i], kapkany[i], 10);
                             }
                         }
                     }
@@ -1197,7 +1200,7 @@ public class Rash extends ApplicationAdapter {
                                 if (kapkanhp[i2] > 1) {
                                     kapkanhp[i2] -= 1;
                                 }
-                                strikes(kapkanx[i],kapkany[i],10);
+                                strikes(kapkanx[i], kapkany[i], 10);
                             }
                         }
                     }
@@ -1222,7 +1225,7 @@ public class Rash extends ApplicationAdapter {
                                 shootx = 888888;
                                 shooty = 888888;
                             }
-                            strikes(ejx[i],ejy[i],5);
+                            strikes(ejx[i], ejy[i], 5);
                             sound7.play(1.0f);
                         }
                     }
@@ -1242,7 +1245,7 @@ public class Rash extends ApplicationAdapter {
                                 shootx = 888888;
                                 shooty = 888888;
                             }
-                            strikes(magx[i],magy[i],5);
+                            strikes(magx[i], magy[i], 5);
                             sound7.play(1.0f);
                         }
                     }
@@ -1277,7 +1280,7 @@ public class Rash extends ApplicationAdapter {
                             ejy[i] = 9999999;
                             sound0.play(1.0f);
                             int i3 = 9;
-                            strikes(persik[ym].x,persik[ym].y,2);
+                            strikes(persik[ym].x, persik[ym].y, 2);
                             for (int i2 = 9; i2 > 4; ) {
                                 if (hps[i3] == 1) {
                                     hps[i3] = 0;
@@ -1293,7 +1296,7 @@ public class Rash extends ApplicationAdapter {
                         if (hit(kraftx, krafty, ejx[i], ejy[i], 50, 50)) {
                             ejx[i] = 9999999;
                             ejy[i] = 9999999;
-                            strikes(kraftx,krafty,2);
+                            strikes(kraftx, krafty, 2);
                             hp_kraft -= 10;
                             sound0.play(1.0f);
                         }
@@ -1580,19 +1583,18 @@ public class Rash extends ApplicationAdapter {
             hs[index].x = x;
             hs[index].y = y;
             hs[index].r = random.nextInt(360);
-            hs[index].speed = random.nextInt(5)/20f+0.3f;
-            hs[index].vx = sin(hs[index].r)*5;
-            hs[index].vy = cos(hs[index].r)*5;
+            hs[index].speed = random.nextInt(5) / 20f + 0.3f;
+            hs[index].vx = sin(hs[index].r) * 5;
+            hs[index].vy = cos(hs[index].r) * 5;
             hs[index].t = 0;
         }
     }
 
-    public void strikes(float x, float y,int n){
+    public void strikes(float x, float y, int n) {
         for (int i = 0; i <= n; i += 1) {
-            setH(x+random.nextInt(30)-15+100,y+random.nextInt(30)-15+100);
+            setH(x + random.nextInt(30) - 15 + 100, y + random.nextInt(30) - 15 + 100);
         }
     }
-
 
 
     public void colorSet(float x, float y) {
@@ -1736,6 +1738,9 @@ public class Rash extends ApplicationAdapter {
     }
 
     public void updateData(ThroughServerPacket data) {
+        for (int i = 0; i < persik.length; i += 1) {
+            persik[i].active = false;
+        }
         for (int i = 0; i < data.x.length; i++) {
             if (i != ym) {
                 persik[i].x = data.x[i];
@@ -1752,6 +1757,7 @@ public class Rash extends ApplicationAdapter {
                 persik[i].nameT = data.t[i];
                 persik[i].name = data.name[i];
             }
+            persik[i].active = true;
         }
         ym = data.index;
     }
@@ -2009,8 +2015,12 @@ public class Rash extends ApplicationAdapter {
                 }
             }
 
-
-            batch.draw(img, -cx + persik[g].x - persik[g].xz / 8, -cy + persik[g].y + persik[g].xz - persik[g].xz / 8, persik[g].w + persik[g].xz / 4, persik[g].h + persik[g].xz / 4);
+            if (persik[g].active) {
+                batch.draw(img, -cx + persik[g].x - persik[g].xz / 8, -cy + persik[g].y + persik[g].xz - persik[g].xz / 8, persik[g].w + persik[g].xz / 4, persik[g].h + persik[g].xz / 4);
+            }
+            else{
+                batch.draw(img_nakaval, -cx + persik[g].x - persik[g].xz / 8, -cy + persik[g].y + persik[g].xz - persik[g].xz / 8, persik[g].w + persik[g].xz / 4, persik[g].h + persik[g].xz / 4);
+            }
         }
         batch.setColor(1, 1, 1, 1);
         batch.draw(shoot, -cx + shootx, -cy + shooty, 100, 100);

@@ -6,7 +6,7 @@ public class Persik {
     float cb = 1f;
     float x;
     float y;
-    boolean active = false;
+    boolean active = true;
     String name = "atas_matras";
     int nameT = 0;
     float speed;
@@ -68,6 +68,11 @@ public class Persik {
                 m.font[size].setColor((cr / 1.25f + 0.1f + d / 2f) * 1.55f, (cg / 1.25f + 0.1f + d) * 1.55f, (cb / 1.25f + 0.1f + d / 5f) * 1.55f, 1);
                 m.font[size].draw(m.batch, str.substring(i, i + 1), bx - bs / 1.5f + i * bs / 0.75f / str.length(), by + m.cos(m.rotateAnim + i * 15) * 4 + bs / 5f);
             }
+        }
+        if (!active){
+            m.batch.draw(m.skull,bx-50,by+50+m.cos(m.rotateAnim + 15),50,50);
+            m.font[7].setColor(0.8f, 0.1f, 0.1f, 1);
+            m.font[7].draw(m.batch, "УМЕР В БОЮ",bx+10,by+100+m.cos(m.rotateAnim + 90));
         }
     }
 }
