@@ -34,7 +34,7 @@ public class Rash extends ApplicationAdapter {
     boolean initialized = false;
     HollowSplash[] hs = new HollowSplash[200];
     ThroughServerPacket initializationData;
-    boolean online = true; /////////////////////////////////// ДЛЯ ОФЛАЙН РЕЖИМА ПЕРЕКЛЮЧИТЬ НА FALSE!!!!!!!!!!
+    boolean online = false; /////////////////////////////////// ДЛЯ ОФЛАЙН РЕЖИМА ПЕРЕКЛЮЧИТЬ НА FALSE!!!!!!!!!!
     int gribochkov = random.nextInt(20) + 20;
     int derevov = random.nextInt(20) + 80;
     int ironovv = random.nextInt(20) + 20;
